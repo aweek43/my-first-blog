@@ -4,8 +4,15 @@
 		<meta property="go:url" content="kimhanju.pythonanywhere.com">
 		<meta property="og:title" content="HANJU">
 		<meta property="og:type" content="website">
-		<meta property="og:image" content="http://kimhanju.pythonanywhere.com/static/images/hanju.jpg" width="100%" height="100%"/>
-		<meta property="og:description" content="한주의 블로그2">
+		<meta property="og:image" content="http://kimhanju.pythonanywhere.com/static/images/hanju.ico">
+		<meta property="og:description" content="한주의 블로그">
+		<style>
+		.linkbox {
+			height: 150px;
+			width: 500px;
+			display: inline-block;
+		}
+		</style>
 		<title>Kimhanju's First Django Blog</title>
 	</head>
 	<body>
@@ -19,26 +26,44 @@
 		function youtube() {
 			return document.getElementById("youtubeInput").value;
 		}
+		function backjoon() {
+			return document.getElementById("backjoonInput").value;
+		}
 		</script>
 		<div>
 			<h1>Kimhanju's First Django Blog</h1>
 		</div>
+		<br>
 		<div>
-			<p>My first post</p>
-			<br>
-			<a href="https://www.google.co.kr/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/Google.JPG" width="200px" height = "100px"/><br>Let's go Google!</a>
-			<input type="text" id="googleInput"/>
-			<button onclick='window.open("https://www.google.com/search?q=" + google())' id="googleButton">Search on Google</button>
+			<div class="linkbox">
+				<a href="https://www.google.co.kr/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/Google.JPG" width="200px" height = "100px"/><br>Let's go Google!</a>
+				<input type="text" id="googleInput"/>
+				<button onclick='window.open("https://www.google.com/search?q=" + google())' id="googleButton">Search on Google</button>
+			</div>
+			<div class="linkbox">
+				<a href="https://www.acmicpc.net/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/backjoon.JPG" width="200px" height = "100px"/><br>Let's go BackJoon!</a>
+				<input type="text" id="backjoonInput"/>
+				<button onclick='window.open("https://www.acmicpc.net/problem/" + backjoon())' id="backjoonButton">Go to Problem Number</button>
+			</div>
 			<br><br>
-			<a href="https://www.naver.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/naver.JPG" width="200px" height = "100px"/><br>Let's go NAVER!</a>
-			<input type="text" id="naverInput"/>
-			<button onclick='window.open("https://search.naver.com/search.naver?query=" + naver())' id="naverButton">Search on NAVER</button>
+			<div class="linkbox">
+				<a href="https://www.naver.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/naver.JPG" width="200px" height = "100px"/><br>Let's go NAVER!</a>
+				<input type="text" id="naverInput"/>
+				<button onclick='window.open("https://search.naver.com/search.naver?query=" + naver())' id="naverButton">Search on NAVER</button>
+			</div>
+			<div class="linkbox">
+				<a href="http://www.wolframalpha.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/calculate.JPG" width="200px" height = "100px"/><br>Let's do Infinitesimal Calculus!</a>
+			</div>
 			<br><br>
-			<a href="https://klas.khu.ac.kr/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/KLAS.JPG" width="200px" height = "100px"/><br>Let's go KLAS!</a>
+			<div class="linkbox">
+				<a href="https://klas.khu.ac.kr/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/KLAS.JPG" width="200px" height = "100px"/><br>Let's go KLAS!</a>
+			</div>
 			<br><br>
-			<a href="https://www.youtube.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/YouTube.JPG" width="200px" height = "100px"/><br>Let's go YouTube!</a>
-			<input type="text" id="youtubeInput"/>
-			<button onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())' id="youTubeButton">Search on YouTube</button>
+			<div class="linkbox">
+				<a href="https://www.youtube.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/YouTube.JPG" width="200px" height = "100px"/><br>Let's go YouTube!</a>
+				<input type="text" id="youtubeInput"/>
+				<button onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())' id="youTubeButton">Search on YouTube</button>
+			</div>
 		</div>
 		</div>
 	</body>
