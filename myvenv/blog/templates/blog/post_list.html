@@ -1,3 +1,4 @@
+{% extends 'blog/base.html' %}
 {% load staticfiles %}
 <html>
 	<head>
@@ -7,11 +8,6 @@
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 		<meta charset="utf-8">
-		<meta property="go:url" content="kimhanju.pythonanywhere.com">
-		<meta property="og:title" content="HANJU">
-		<meta property="og:type" content="website">
-		<meta property="og:image" content="http://kimhanju.pythonanywhere.com/static/images/hanju.JPG">
-		<meta property="og:description" content="한주의 블로그">
 		<style>
 		.linkbox {
 			height: 150px;
@@ -26,72 +22,23 @@
 		<div class="page-header">
 			<h1><a href="/">Django Girls Blog</a></h1>
 		</div>
-
 		<div class="content container">
 			<div class="row">
 				<div class="col-md-8">
-					{% for post in posts %}
-					<div class="post">
-						<div class="date">
-							<p>published: {{ post.published_date }}</p>
-						</div>
-						<h1><a href="">{{ post.title }}</a></h1>
-						<p>{{ post.text|linebreaksbr }}</p>
-					</div>
-					{% endfor %}
+
+					{% block content %}
+						{% for post in posts %}
+							<div class="post">
+								<div class="date">
+									<p>published: {{ post.published_date }}</p>
+								</div>
+								<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+								<p>{{ post.text|linebreaksbr }}</p>
+							</div>
+						{% endfor %}
+					{% endblock %}
 				</div>
 			</div>
-		</div>
-
-		<script>
-		function google() {
-			return document.getElementById("googleInput").value;
-		}
-		function naver() {
-			return document.getElementById("naverInput").value;
-		}
-		function youtube() {
-			return document.getElementById("youtubeInput").value;
-		}
-		function backjoon() {
-			return document.getElementById("backjoonInput").value;
-		}
-		</script>
-		<div>
-			<h1>Kimhanju's First Django Blog</h1>
-		</div>
-		<br>
-		<div>
-			<div class="linkbox">
-				<a href="https://www.google.co.kr/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/Google.JPG" width="200px" height = "100px"/><br>Let's go Google!</a>
-				<input type="text" id="googleInput"/>
-				<button onclick='window.open("https://www.google.com/search?q=" + google())' id="googleButton">Search on Google</button>
-			</div>
-			<div class="linkbox">
-				<a href="https://www.acmicpc.net/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/backjoon.JPG" width="200px" height = "100px"/><br>Let's go BackJoon!</a>
-				<input type="text" id="backjoonInput"/>
-				<button onclick='window.open("https://www.acmicpc.net/problem/" + backjoon())' id="backjoonButton">Go to Problem Number</button>
-			</div>
-			<br><br>
-			<div class="linkbox">
-				<a href="https://www.naver.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/naver.JPG" width="200px" height = "100px"/><br>Let's go NAVER!</a>
-				<input type="text" id="naverInput"/>
-				<button onclick='window.open("https://search.naver.com/search.naver?query=" + naver())' id="naverButton">Search on NAVER</button>
-			</div>
-			<div class="linkbox">
-				<a href="http://www.wolframalpha.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/calculate.JPG" width="200px" height = "100px"/><br>Let's do Infinitesimal Calculus!</a>
-			</div>
-			<br><br>
-			<div class="linkbox">
-				<a href="https://klas.khu.ac.kr/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/KLAS.JPG" width="200px" height = "100px"/><br>Let's go KLAS!</a>
-			</div>
-			<br><br>
-			<div class="linkbox">
-				<a href="https://www.youtube.com/" target ="_blank"><img src="http://kimhanju.pythonanywhere.com/static/images/YouTube.JPG" width="200px" height = "100px"/><br>Let's go YouTube!</a>
-				<input type="text" id="youtubeInput"/>
-				<button onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())' id="youTubeButton">Search on YouTube</button>
-			</div>
-		</div>
 		</div>
 	</body>
 </html>
