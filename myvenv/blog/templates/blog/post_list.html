@@ -1,44 +1,19 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}
-<html>
-	<head>
-		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext"
-					rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-		<meta charset="utf-8">
-		<style>
-		.linkbox {
-			height: 150px;
-			width: 500px;
-			display: inline-block;
-		}
-		</style>
-		<title>Kimhanju's First Django Blog</title>
-	</head>
-	<body>
+{% block content %}
 
-		<div class="page-header">
-			<h1><a href="/">Django Girls Blog</a></h1>
-		</div>
-		<div class="content container">
-			<div class="row">
-				<div class="col-md-8">
 
-					{% block content %}
-						{% for post in posts %}
-							<div class="post">
-								<div class="date">
-									<p>published: {{ post.published_date }}</p>
-								</div>
-								<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-								<p>{{ post.text|linebreaksbr }}</p>
-							</div>
-						{% endfor %}
-					{% endblock %}
-				</div>
+	{% for post in posts %}
+		<div class="post">
+			<div class="date">
+				<p>published: {{ post.published_date }}</p>
 			</div>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			<p>{{ post.text|linebreaksbr }}</p>
 		</div>
-	</body>
-</html>
+	{% endfor %}
+
+
+
+	<h3><a href="{% url 'myportal' %}" target="_blank">MYPORTAL</a></h3>
+{% endblock content %}

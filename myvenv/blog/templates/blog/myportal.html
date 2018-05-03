@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+		<meta charset="utf-8">
+		<meta property="go:url" content="kimhanju.pythonanywhere.com">
+		<meta property="og:title" content="MYPORTAL">
+		<meta property="og:type" content="website">
+		<meta property="og:image" content="{% static 'images/myportal_logo.jpg' %}">
+		<meta property="og:description" content="사용자가 만드는 포털, 마이포털">
+		<style>
+		.linkbox {
+			height: 150px;
+			width: 500px;
+			display: inline-block;
+		}
+
+		#openmenu {
+			float: right;
+		}
+		</style>
+		<title>MyPortal</title>
+	</head>
+	<body>
+		<script>
+		function google() {
+			return document.getElementById("googleInput").value;
+		}
+		function naver() {
+			return document.getElementById("naverInput").value;
+		}
+		function youtube() {
+			return document.getElementById("youtubeInput").value;
+		}
+		function backjoon() {
+			return document.getElementById("backjoonInput").value;
+		}
+		</script>
+		<div class="page-header" style="text-align: center">
+			<h1>MyPortal</h1>
+		</div>
+
+		<button id="openmenu"> < </button>
+
+		<br>
+		<div>
+			<div class="linkbox">
+				<a href="https://www.google.co.kr/" target ="_blank"><img src="{% static 'images/Google.JPG' %}" width="200px" height = "100px"/><br>Let's go Google!</a>
+				<input type="text" id="googleInput"/>
+				<button onclick='window.open("https://www.google.com/search?q=" + google())' id="googleButton">Search on Google</button>
+			</div>
+			<div class="linkbox">
+				<a href="https://www.acmicpc.net/" target ="_blank"><img src="{% static 'images/backjoon.JPG' %}" width="200px" height = "100px"/><br>Let's go BackJoon!</a>
+				<input type="text" id="backjoonInput"/>
+				<button onclick='window.open("https://www.acmicpc.net/problem/" + backjoon())' id="backjoonButton">Go to Problem Number</button>
+			</div>
+			<br><br>
+			<div class="linkbox">
+				<a href="https://www.naver.com/" target ="_blank"><img src="{% static 'images/naver.JPG' %}" width="200px" height = "100px"/><br>Let's go NAVER!</a>
+				<input type="text" id="naverInput"/>
+				<button onclick='window.open("https://search.naver.com/search.naver?query=" + naver())' id="naverButton">Search on NAVER</button>
+			</div>
+			<div class="linkbox">
+				<a href="http://www.wolframalpha.com/" target ="_blank"><img src="{% static 'images/calculate.JPG' %}" width="200px" height = "100px"/><br>Let's do Infinitesimal Calculus!</a>
+			</div>
+			<br><br>
+			<div class="linkbox">
+				<a href="https://klas.khu.ac.kr/" target ="_blank"><img src="{% static 'images/KLAS.JPG' %}" width="200px" height = "100px"/><br>Let's go KLAS!</a>
+			</div>
+			<br><br>
+			<div class="linkbox">
+				<a href="https://www.youtube.com/" target ="_blank"><img src="{% static 'images/YouTube.JPG' %}" width="200px" height = "100px"/><br>Let's go YouTube!</a>
+				<input type="text" id="youtubeInput"/>
+				<button onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())' id="youTubeButton">Search on YouTube</button>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>
