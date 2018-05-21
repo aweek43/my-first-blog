@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import Post
+from .models import Post, Portalhtml
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
-from django.shortcuts import redirect
+from .forms import PostForm, UserForm, LoginForm
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+from django.template import RequestContext
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -40,5 +43,33 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
-def myportal(request):
-    return render(request, 'blog/myportal.html', {})
+def portalhtml(request):
+    portalhtmls = Portalhtml.objects.all()
+    context = {'portalhtmls':portalhtmls}
+    return render(request, 'blog/myportal.html', context)
+
+def signup(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            login(request, new_user)
+            return redirect('myportal')
+    else:
+        form = UserForm()
+        return render(request, 'blog/adduser.html', {'form': form})
+
+def signin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect('myportal')
+        else:
+            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+    else:
+        form = LoginForm()
+        return render(request, 'blog/login.html', {'form': form})
