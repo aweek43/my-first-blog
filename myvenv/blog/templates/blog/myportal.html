@@ -61,6 +61,11 @@
 			margin-top: -10;
 		}
 
+		#makeitbutton {
+		width: 200px;
+		height: 100px;
+		}
+
 		</style>
 		<title>MyPortal</title>
 	</head>
@@ -77,8 +82,86 @@
 
 {% if user.is_anonymous %}
 
-<div class="page-header" style="text-align: center">			<h1>MyPortal1</h1>		</div>		<button id="openmenu" style="display: none;" onclick="openmenu();"> &lt; </button>		<button id="closemenu" style="display: inline-block;" onclick="closemenu();"> &gt; </button>		<br>		<div id="wrapper">			<div class="linkbox" id="googlebox" >				<div class="linkboxheader" id="googleboxheader">					<button class="Xbutton" onclick="closeDiv('googlebox');">X</button>				</div>				<a href="https://www.google.co.kr/" target="_blank"><img width="200" height="100" src="../../static/images/Google.JPG"><br>Let's go Google!</a>				<input id="googleInput" type="text">				<button id="googleButton" onclick='window.open("https://www.google.com/search?q=" + google())'>Search on Google</button>			</div>			<div class="linkbox" id="backjoonbox">				<div class="linkboxheader" id="backjoonboxheader">					<button class="Xbutton" onclick="closeDiv('backjoonbox');">X</button>				</div>				<a href="https://www.acmicpc.net/" target="_blank"><img width="200" height="100" src="../../static/images/backjoon.JPG"><br>Let's go BackJoon!</a>				<input id="backjoonInput" type="text">				<button id="backjoonButton" onclick='window.open("https://www.acmicpc.net/problem/" + backjoon())'>Go to Problem Number</button>			</div>			<br><br>			<div class="linkbox" id="naverbox">				<div class="linkboxheader" id="naverboxheader">					<button class="Xbutton" onclick="closeDiv('naverbox');">X</button>				</div>				<a href="https://www.naver.com/" target="_blank"><img width="200" height="100" src="../../static/images/naver.JPG"><br>Let's go NAVER!</a>				<input id="naverInput" type="text">				<button id="naverButton" onclick='window.open("https://search.naver.com/search.naver?query=" + naver())'>Search on NAVER</button>			</div>			<div class="linkbox" id="calculatebox">				<div class="linkboxheader" id="calculateboxheader">					<button class="Xbutton" onclick="closeDiv('calculatebox');">X</button>				</div>				<a href="http://www.wolframalpha.com/" target="_blank"><img width="200" height="100" src="../../static/images/calculate.JPG"><br>Let's do Infinitesimal Calculus!</a>			</div>			<br><br>			<div class="linkbox" id="klasbox">				<div class="linkboxheader" id="klasboxheader">					<button class="Xbutton" onclick="closeDiv('klasbox');">X</button>				</div>				<a href="https://klas.khu.ac.kr/" target="_blank"><img width="200" height="100" src="../../static/images/KLAS.JPG"><br>Let's go KLAS!</a>			</div>			<br><br>			<div class="linkbox" id="youtubebox" >				<div class="linkboxheader" id="youtubeboxheader">					<button class="Xbutton" onclick="closeDiv('youtubebox');">X</button>				</div>				<a href="https://www.youtube.com/" target="_blank"><img width="200" height="100" src="../../static/images/YouTube.JPG"><br>Let's go YouTube!</a>				<input id="youtubeInput" type="text">				<button id="youTubeButton" onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())'>Search on YouTube</button>			</div>			<br><br>			<div class="linkbox" id="makeitbox">				<div class="linkboxheader" id="makeitboxheader">					<button class="Xbutton" onclick="closeDiv('makeitbox');">X</button>				</div>				MAKEIT!!			</div>		</div>
-
+	<div class="page-header" style="text-align: center">
+		<h1>MyPortal</h1>
+	</div>
+	<button id="openmenu" style="display: none;" onclick="openmenu();"> &lt; </button>
+	<button id="closemenu" style="display: inline-block;" onclick="closemenu();"> &gt; </button>
+	<br>
+	<div id="wrapper">
+		<div class="linkbox" id="googlebox" >
+			<div class="linkboxheader" id="googleboxheader">
+				<button class="Xbutton" onclick="closeDiv('googlebox');">X</button>
+			</div>
+			<a href="https://www.google.co.kr/" target="_blank">
+				<img width="200" height="100" src="../../static/images/Google.JPG"><br>Let's go Google!
+			</a>
+			<input id="googleInput" type="text">
+			<button id="googleButton" onclick='window.open("https://www.google.com/search?q=" + google())'>Search on Google</button>
+		</div>
+		<div class="linkbox" id="backjoonbox">
+			<div class="linkboxheader" id="backjoonboxheader">
+				<button class="Xbutton" onclick="closeDiv('backjoonbox');">X</button>
+			</div>
+			<a href="https://www.acmicpc.net/" target="_blank">
+				<img width="200" height="100" src="../../static/images/backjoon.JPG"><br>Let's go BackJoon!
+			</a>
+			<input id="backjoonInput" type="text">
+			<button id="backjoonButton" onclick='window.open("https://www.acmicpc.net/problem/" + backjoon())'>Go to Problem Number</button>
+		</div>
+		<br><br>
+		<div class="linkbox" id="naverbox">
+			<div class="linkboxheader" id="naverboxheader">
+				<button class="Xbutton" onclick="closeDiv('naverbox');">X</button>
+			</div>
+			<a href="https://www.naver.com/" target="_blank">
+				<img width="200" height="100" src="../../static/images/naver.JPG"><br>Let's go NAVER!
+			</a>
+			<input id="naverInput" type="text">
+			<button id="naverButton" onclick='window.open("https://search.naver.com/search.naver?query=" + naver())'>Search on NAVER</button>
+		</div>
+		<div class="linkbox" id="calculatebox">
+			<div class="linkboxheader" id="calculateboxheader">
+				<button class="Xbutton" onclick="closeDiv('calculatebox');">X</button>
+			</div>
+			<a href="http://www.wolframalpha.com/" target="_blank">
+				<img width="200" height="100" src="../../static/images/calculate.JPG"><br>Let's do Infinitesimal Calculus!
+			</a>
+		</div>
+		<br><br>
+		<div class="linkbox" id="klasbox">
+			<div class="linkboxheader" id="klasboxheader">
+				<button class="Xbutton" onclick="closeDiv('klasbox');">X</button>
+			</div>
+			<a href="https://klas.khu.ac.kr/" target="_blank">
+				<img width="200" height="100" src="../../static/images/KLAS.JPG"><br>Let's go KLAS!
+			</a>
+		</div>
+		<br><br>
+		<div class="linkbox" id="youtubebox" >
+			<div class="linkboxheader" id="youtubeboxheader">
+				<button class="Xbutton" onclick="closeDiv('youtubebox');">X</button>
+			</div>
+			<a href="https://www.youtube.com/" target="_blank">
+				<img width="200" height="100" src="../../static/images/YouTube.JPG"><br>Let's go YouTube!
+			</a>
+			<input id="youtubeInput" type="text">
+			<button id="youTubeButton" onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())'>Search on YouTube</button>
+		</div>
+		<br><br>
+		<div class="linkbox" id="makeitbox">
+			<div class="linkboxheader" id="makeitboxheader">
+				<button class="Xbutton" onclick="closeDiv('makeitbox');">X</button>
+			</div>
+			<button width="200px" height="100px" id="makeitbutton" onclick="gomakeit();">Created Page</button>
+			<br>
+			이름: <input type="text" id="makeitname">
+			<input type="hidden" id="hiddenmakeitname">
+			<br>
+			URL: <input type="text" id="makeiturl">
+			<input type="hidden" id="hiddenmakeiturl">
+		</div>
+	</div>
 
 {% else %}
 	<p> 작성자: {{request.user}}</p>
@@ -202,6 +285,15 @@ function save()
 		document.getElementById("hiddeninput").value = document.getElementById("dbhtml").innerHTML;
 		document.getElementById("myForm").submit();
 	}
+
+document.getElementById("makeiturl").value = document.getElementById("hiddenmakeiturl").value;
+document.getElementById("makeitname").value = document.getElementById("hiddenmakeitname").value;
+function gomakeit()
+{
+	document.getElementById("hiddenmakeiturl").value = document.getElementById("makeiturl").value;
+	document.getElementById("hiddenmakeitname").value = document.getElementById("makeitname").value;
+	window.open(document.getElementById("hiddenmakeiturl").value);
+}
 </script>
 	</body>
 </html>
