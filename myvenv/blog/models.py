@@ -16,3 +16,5 @@ class Post(models.Model):
 class Portalhtml(models.Model):
     author = models.ForeignKey('auth.User')
     text = models.TextField()
+    def __str__(self):
+        return str(self.author)

@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^myportal/$', views.portalhtml, name='myportal'),
     url(r'^join/$', views.signup, name='join'),
     url(r'^login/$', views.signin, name='login'),
+    url(r'^savehtml/$', views.savehtml, name='savehtml'),
 ]

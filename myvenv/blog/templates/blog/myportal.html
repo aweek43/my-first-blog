@@ -1,9 +1,210 @@
 {% load staticfiles %}
+<html>
+	<head>
+		<link rel="stylesheet" href="../../static/css/blog.css">
+		<meta charset="utf-8">
+		<meta property="go:url" content="kimhanju.pythonanywhere.com">
+		<meta property="og:title" content="MYPORTAL">
+		<meta property="og:type" content="website">
+		<meta property="og:image" content="../../static/images/myportal_logo.jpg">
+		<meta property="og:description" content="사용자가 만드는 포털, 마이포털">
+		<style>
 
-{% for portalhtml in portalhtmls %}
-	{% if portalhtml.author == request.user %}
-		{{count}}
-		<p> 작성자: {{portalhtml.author}}</p>
-		{{portalhtml.text|safe}}
-	{% endif %}
-{% endfor %}
+		#wrapper {
+			height: 1000px;
+			width: 850px;
+		}
+
+		.linkbox {
+			position: absolute;
+			z-index: 9;
+			height: 150px;
+			width: 500px;
+			display: none;
+			background-color: white;
+		}
+
+		.linkboxheader {
+			padding: 10px;
+   			cursor: move;
+    		z-index: 10;
+    		background-color: #2196F3;
+    		color: #fff;
+		}
+
+		#openmenu {
+			float: right;
+		}
+
+		#closemenu {
+			float: right;
+			display: none;
+		}
+
+		#menubox {
+			float: right;
+			background-color: lightgray;
+			width: 300px;
+			height: 1000px;
+			margin-top: -950px;
+			display: none;
+		}
+
+		.smallbox {
+			margin: 20px;
+			width: 80px;
+			height: 60px;
+		}
+
+		.Xbutton {
+			float: right;
+			margin-top: -10;
+		}
+
+		</style>
+		<title>MyPortal</title>
+	</head>
+	<body>
+
+<form method="POST" action="/savehtml/" id="myForm">
+	{% csrf_token %}
+	<input id="hiddeninput" name="htmlname" type="hidden" width="200px" height="200px">
+    <input type="button" onclick="save();" value="Save">
+</form>
+
+<input type="button" value="로그인" onclick="location.href='/login'" style="float: right;">
+<input type="button" value="회원가입" onclick="location.href='/join'" style="float: right;">
+
+{% if user.is_anonymous %}
+
+<div class="page-header" style="text-align: center">			<h1>MyPortal1</h1>		</div>		<button id="openmenu" style="display: none;" onclick="openmenu();"> &lt; </button>		<button id="closemenu" style="display: inline-block;" onclick="closemenu();"> &gt; </button>		<br>		<div id="wrapper">			<div class="linkbox" id="googlebox" >				<div class="linkboxheader" id="googleboxheader">					<button class="Xbutton" onclick="closeDiv('googlebox');">X</button>				</div>				<a href="https://www.google.co.kr/" target="_blank"><img width="200" height="100" src="../../static/images/Google.JPG"><br>Let's go Google!</a>				<input id="googleInput" type="text">				<button id="googleButton" onclick='window.open("https://www.google.com/search?q=" + google())'>Search on Google</button>			</div>			<div class="linkbox" id="backjoonbox">				<div class="linkboxheader" id="backjoonboxheader">					<button class="Xbutton" onclick="closeDiv('backjoonbox');">X</button>				</div>				<a href="https://www.acmicpc.net/" target="_blank"><img width="200" height="100" src="../../static/images/backjoon.JPG"><br>Let's go BackJoon!</a>				<input id="backjoonInput" type="text">				<button id="backjoonButton" onclick='window.open("https://www.acmicpc.net/problem/" + backjoon())'>Go to Problem Number</button>			</div>			<br><br>			<div class="linkbox" id="naverbox">				<div class="linkboxheader" id="naverboxheader">					<button class="Xbutton" onclick="closeDiv('naverbox');">X</button>				</div>				<a href="https://www.naver.com/" target="_blank"><img width="200" height="100" src="../../static/images/naver.JPG"><br>Let's go NAVER!</a>				<input id="naverInput" type="text">				<button id="naverButton" onclick='window.open("https://search.naver.com/search.naver?query=" + naver())'>Search on NAVER</button>			</div>			<div class="linkbox" id="calculatebox">				<div class="linkboxheader" id="calculateboxheader">					<button class="Xbutton" onclick="closeDiv('calculatebox');">X</button>				</div>				<a href="http://www.wolframalpha.com/" target="_blank"><img width="200" height="100" src="../../static/images/calculate.JPG"><br>Let's do Infinitesimal Calculus!</a>			</div>			<br><br>			<div class="linkbox" id="klasbox">				<div class="linkboxheader" id="klasboxheader">					<button class="Xbutton" onclick="closeDiv('klasbox');">X</button>				</div>				<a href="https://klas.khu.ac.kr/" target="_blank"><img width="200" height="100" src="../../static/images/KLAS.JPG"><br>Let's go KLAS!</a>			</div>			<br><br>			<div class="linkbox" id="youtubebox" >				<div class="linkboxheader" id="youtubeboxheader">					<button class="Xbutton" onclick="closeDiv('youtubebox');">X</button>				</div>				<a href="https://www.youtube.com/" target="_blank"><img width="200" height="100" src="../../static/images/YouTube.JPG"><br>Let's go YouTube!</a>				<input id="youtubeInput" type="text">				<button id="youTubeButton" onclick='window.open("https://www.youtube.com/results?search_query=" + youtube())'>Search on YouTube</button>			</div>			<br><br>			<div class="linkbox" id="makeitbox">				<div class="linkboxheader" id="makeitboxheader">					<button class="Xbutton" onclick="closeDiv('makeitbox');">X</button>				</div>				MAKEIT!!			</div>		</div>
+
+
+{% else %}
+	<p> 작성자: {{request.user}}</p>
+	<div id="dbhtml">
+
+	{% for portalhtml in portalhtmls %}
+		{% if portalhtml.author == request.user %}
+			{{portalhtml.text|safe}}
+		{% endif %}
+	{% endfor %}
+{% endif %}
+	</div>
+
+
+		<div id="menubox">
+			<button id="google" class="smallbox" onclick="opengoogle();">google</button>
+			<button id="youtube" class="smallbox" onclick="openyoutube();">youtube</button><br>
+			<button id="backjoon" class="smallbox" onclick="openbackjoon();">backjoon</button>
+			<button id="naver" class="smallbox" onclick="opennaver();">naver</button><br>
+			<button id="calculate" class="smallbox" onclick="opencalculate();">calculate</button>
+			<button id="klas" class="smallbox" onclick="openklas();">klas</button>
+			<button id="makeit" class="smallbox" onclick="openmakeit();">MakeIt!</button>
+		</div>
+
+<script type="text/javascript">
+		function google() {
+			return document.getElementById("googleInput").value;
+		}
+		function naver() {
+			return document.getElementById("naverInput").value;
+		}
+		function youtube() {
+			return document.getElementById("youtubeInput").value;
+		}
+		function backjoon() {
+			return document.getElementById("backjoonInput").value;
+		}
+		function openmenu() {
+			document.getElementById("menubox").style.display = "inline-block";
+			document.getElementById("closemenu").style.display = "inline-block";
+			document.getElementById("openmenu").style.display = "none";
+		}
+		function closemenu() {
+			document.getElementById("menubox").style.display = "none";
+			document.getElementById("closemenu").style.display = "none";
+			document.getElementById("openmenu").style.display = "inline-block";
+		}
+		function opengoogle() {
+			document.getElementById("googlebox").style.display = "inline-block";
+		}
+		function openbackjoon() {
+			document.getElementById("backjoonbox").style.display = "inline-block";
+		}
+		function opencalculate() {
+			document.getElementById("calculatebox").style.display = "inline-block";
+		}
+		function openyoutube() {
+			document.getElementById("youtubebox").style.display = "inline-block";
+		}
+		function opennaver() {
+			document.getElementById("naverbox").style.display = "inline-block";
+		}
+		function openklas() {
+			document.getElementById("klasbox").style.display = "inline-block";
+		}
+		function openmakeit() {
+			document.getElementById("makeitbox").style.display = "inline-block";
+		}
+
+	dragElement(document.getElementById(("googlebox")));
+	dragElement(document.getElementById(("youtubebox")));
+	dragElement(document.getElementById(("backjoonbox")));
+	dragElement(document.getElementById(("naverbox")));
+	dragElement(document.getElementById(("calculatebox")));
+	dragElement(document.getElementById(("klasbox")));
+	dragElement(document.getElementById(("makeitbox")));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+  function dragMouseDown(e) {
+    e = e || window.event;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+		function closeDiv(element) {
+				document.getElementById(element).style.display = "none";
+		}
+function save()
+{
+		document.getElementById("hiddeninput").value = document.getElementById("dbhtml").innerHTML;
+		document.getElementById("myForm").submit();
+	}
+</script>
+	</body>
+</html>
+
+
+
