@@ -5,5 +5,5 @@ Django을 이용한 웹페이지(pythonanywhere.com 이용)
 로그인 기능으로 커스터마이징한 상태 저장 가능
 처음 접속 시 Django예제 페이지 하단 MyPortal로 입장
 
-url : kimhanju.pythonanywhere.com
+url : http://kimhanju.pythonanywhere.com/
 - (현재 pythonanywhere 기간만료상태)
